@@ -131,7 +131,7 @@ console.log(majElement([2,3,2,4,4,4,4,4,4,4,1]));
 
 let student = {name:'Samy'};
 setStudentAgeApi(student, 24);
-console.log(student);
+console.log(student);*/
 setStudentAgeApi = (student, age) => {
     return new Promise(function (resolve, reject){
         setTimeout(() => {
@@ -149,17 +149,59 @@ setStudentAgeApi(student, -24).then((onResolved) => {
    console.log(student)
 },(onRejected) => {
    console.log("Bad Age \n provide positive age!")
-})*/
+})
 
-// B not solved
-setFamilyMembers = (arr) => {
-    return new Promise (function (resolve, reject){
+// B 
+ const families = [{
+    fatherName: "kayumba",
+    motherName:"Darina",
+    childrenNumber:3
+},
+{
+    fatherName: "Kalisa",
+    motherName:"Guillaine",
+    childrenNumber:7
+},
+{
+    fatherName: "Uwimana",
+    motherName:"Sonia",
+    childrenNumber:5
+},
+{
+    fatherName: "Mukaruta",
+    motherName:"Aline",
+    childrenNumber:-3
+}]
+
+const ChildrenAverage = (families) => {
+    // calculate average
+    const average = (familyNumber, childrenNumber) =>{
+        return Math.round(childrenNumber/familyNumber);
+    }
+
+    console.log("calculating average ...");
+    return new Promise((resolve, reject) =>{
         setTimeout(() => {
-            for(let family in arr){
-                family.fatherName = fatherName;
-                family.motherName = motherName;
-                family.childrenNumber = childrenNumber;
-            }
+            let familyNumber = 0, childrensNumber = 0;
+            //Loop through every every family
+            families.forEach(family => {
+                if (family.fatherName === 'Yves') {
+                    reject("Yves is not an allowed dad in 2022.");
+                }
+
+                if(family.childrenNumber < 0){
+                    return;
+                }else{
+                    family.childrenNumber++;
+                    familyNumber++;
+                    childrensNumber += family.childrenNumber;
+                }
+            });
+            resolve(`The average of children Number is ${familyNumber, childrensNumber}`);
         }, 1000);
-    })
+    });
 }
+
+ChildrenAverage(families)
+.then(message => console.log(message))
+.catch(error => console.log(error));
