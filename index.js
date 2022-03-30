@@ -173,35 +173,39 @@ setStudentAgeApi(student, -24).then((onResolved) => {
     childrenNumber:-3
 }]
 
-const ChildrenAverage = (families) => {
-    // calculate average
+const ChildrenAverage = families =>{
+    // functiion to calculate average
     const average = (familyNumber, childrenNumber) =>{
-        return Math.round(childrenNumber/familyNumber);
+         return Math.round(childrenNumber/familyNumber);
     }
 
-    console.log("calculating average ...");
-    return new Promise((resolve, reject) =>{
+    console.log("calculation of average is about starting......")
+    return new Promise((resolve,reject) =>{
         setTimeout(() => {
-            let familyNumber = 0, childrensNumber = 0;
-            //Loop through every every family
+            let familyNumber =0, childrensNumber = 0;
+            //Loop through every family
             families.forEach(family => {
                 if (family.fatherName === 'Yves') {
-                    reject("Yves is not an allowed dad in 2022.");
+                    reject("Yves is not an allowed dad in 2022.")
                 }
-
-                if(family.childrenNumber < 0){
-                    return;
-                }else{
-                    family.childrenNumber++;
+                if (family.childrenNumber < 0) {
+                   return;
+                }
+                else{
+                    family.childrenNumber ++;
                     familyNumber++;
                     childrensNumber += family.childrenNumber;
                 }
+
             });
-            resolve(`The average of children Number is ${familyNumber, childrensNumber}`);
+            
+            resolve(`The average of Children Number is ${average(familyNumber,childrensNumber)}`)
+
         }, 1000);
     });
+
 }
 
-ChildrenAverage(families)
+ ChildrenAverage(families)
 .then(message => console.log(message))
-.catch(error => console.log(error));
+.catch(error => console.log(error))
